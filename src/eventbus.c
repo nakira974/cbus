@@ -5,11 +5,13 @@
  */
 #include "eventbus.h"
 
-typedef enum {ENABLED = 1, DISABLED = 2} entry_mark;
+typedef enum {
+    ENABLED = 1, DISABLED = 2
+} entry_mark;
 typedef struct _eventbus_handler_entry {
     entry_mark mark;
-    event_handler* proxy;
-    void* context;
+    event_handler *proxy;
+    void *context;
 } eventbus_handler_entry;
 
 #define EVENTBUS_EXT_MAX_SIZE 100
@@ -20,34 +22,34 @@ typedef struct _eventbus_ext {
     eventbus_handler_entry handle_pool[EVENTBUS_EXT_MAX_SIZE];
 } eventbus_ext;
 
-void eventbus_destroy(eventbus* thiz) {
+void eventbus_destroy(eventbus *thiz) {
 
     int i = 0;
     return_if_fail(NULL != thiz);
 
-    eventbus_ext* ext = (eventbus_ext*) thiz->ext;
+    eventbus_ext *ext = (eventbus_ext *) thiz->ext;
     ext->used = 0;
     ext->enabled = 0;
 
     SAFE_FREE(thiz);
 }
 
-int eventbus_post(eventbus* thiz, topic_t topic, void* data) {
+int eventbus_post(eventbus *thiz, topic_t topic, void *data) {
 
     int i = 0;
     int successed = 0;
     return_val_if_fail(NULL != thiz && NULL != data, 0);
 
-    eventbus_ext* ext = (eventbus_ext*) thiz->ext;
+    eventbus_ext *ext = (eventbus_ext *) thiz->ext;
 
-    if(ext->enabled == 0) {
+    if (ext->enabled == 0) {
         return 0;
     }
 
-    for(i = 0; i < ext->used; i++) {
-        if(ext->handle_pool[i].mark == ENABLED) {
+    for (i = 0; i < ext->used; i++) {
+        if (ext->handle_pool[i].mark == ENABLED) {
 
-            if(event_handler_should_handle(ext->handle_pool[i].proxy, topic)) {
+            if (event_handler_should_handle(ext->handle_pool[i].proxy, topic)) {
                 successed += event_handler_handle(ext->handle_pool[i].proxy, topic, data, ext->handle_pool[i].context);
             }
         }
@@ -56,11 +58,11 @@ int eventbus_post(eventbus* thiz, topic_t topic, void* data) {
     return successed;
 }
 
-int eventbus_subscribe(eventbus* thiz, event_handler* handler, void* context) {
+int eventbus_subscribe(eventbus *thiz, event_handler *handler, void *context) {
     return_val_if_fail(NULL != thiz && NULL != handler, -1);
 
-    eventbus_ext* ext = (eventbus_ext*) thiz->ext;
-    if(ext->used >=  EVENTBUS_EXT_MAX_SIZE) {
+    eventbus_ext *ext = (eventbus_ext *) thiz->ext;
+    if (ext->used >= EVENTBUS_EXT_MAX_SIZE) {
         return -1;
     }
 
@@ -73,20 +75,20 @@ int eventbus_subscribe(eventbus* thiz, event_handler* handler, void* context) {
     return 0;
 }
 
-int eventbus_unsubscribe(eventbus* thiz, event_handler* handler, void* context) {
+int eventbus_unsubscribe(eventbus *thiz, event_handler *handler, void *context) {
 
     int i = 0;
     return_val_if_fail(NULL != thiz && NULL != handler, 0);
 
-    eventbus_ext* ext = (eventbus_ext*) thiz->ext;
+    eventbus_ext *ext = (eventbus_ext *) thiz->ext;
 
-    if(ext->enabled == 0) {
+    if (ext->enabled == 0) {
         return 0;
     }
 
-    for(i = 0; i < ext->used; i++) {
-        if(ext->handle_pool[i].mark == ENABLED) {
-            if(ext->handle_pool[i].proxy == handler) {
+    for (i = 0; i < ext->used; i++) {
+        if (ext->handle_pool[i].mark == ENABLED) {
+            if (ext->handle_pool[i].proxy == handler) {
                 ext->handle_pool[i].mark = DISABLED;
                 ext->enabled--;
             }
@@ -96,12 +98,12 @@ int eventbus_unsubscribe(eventbus* thiz, event_handler* handler, void* context) 
     return 0;
 }
 
-eventbus* eventbus_create(void) {
+eventbus *eventbus_create(void) {
 
-    eventbus* thiz = (eventbus*) malloc(sizeof(eventbus) + sizeof(eventbus_ext));
+    eventbus *thiz = (eventbus *) malloc(sizeof(eventbus) + sizeof(eventbus_ext));
 
-    if(NULL != thiz) {
-        eventbus_ext* ext = (eventbus_ext*)thiz->ext;
+    if (NULL != thiz) {
+        eventbus_ext *ext = (eventbus_ext *) thiz->ext;
         ext->used = 0;
         ext->enabled = 0;
 

@@ -18,7 +18,7 @@ C_STMT_BGN
  * @param context Additional context for the event
  * @return 0 always
  */
-int event_handler_default_handle(event_handler* thiz, topic_t topic, void* data, void* context);
+int event_handler_default_handle(event_handler *thiz, topic_t topic, void *data, void *context);
 
 /**
  * Default function to check if the event should be handled by the handler.
@@ -26,13 +26,13 @@ int event_handler_default_handle(event_handler* thiz, topic_t topic, void* data,
  * @param topic The topic of the event
  * @return 1 always
  */
-int event_handler_default_should_handle(event_handler* thiz, topic_t topic);
+int event_handler_default_should_handle(event_handler *thiz, topic_t topic);
 
 /**
  * Default function to destroy the event handler (no action performed).
  * @param thiz The event handler instance to destroy
  */
-void event_handler_default_destroy(event_handler* thiz);
+void event_handler_default_destroy(event_handler *thiz);
 
 C_STMT_END
 

@@ -7,12 +7,12 @@
 #include "eventhandler_print.h"
 #include "eventbus_utils.h"
 
-int main(int argc, char* argv[]) {
-    topic_t a_topic = {.key = (void*) 1, .compare =  &int_compare};
+int main(int argc, char *argv[]) {
+    topic_t a_topic = {.key = (void *) 1, .compare =  &int_compare};
 
-    event_handler* print = event_handler_print_create(a_topic);
+    event_handler *print = event_handler_print_create(a_topic);
 
-    eventbus* bus = eventbus_create();
+    eventbus *bus = eventbus_create();
     eventbus_subscribe(bus, print, NULL);
     eventbus_subscribe(bus, print, NULL);
 

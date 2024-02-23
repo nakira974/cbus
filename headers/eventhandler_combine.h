@@ -17,7 +17,7 @@ C_STMT_BGN
  * @param size Size of the handle functions array
  * @return Pointer to the created combined event handler
  */
-event_handler* event_handler_combine_create(topic_t topic,
+event_handler *event_handler_combine_create(topic_t topic,
                                             event_handler_handle_func handleFuncs[], int size);
 
 C_STMT_END

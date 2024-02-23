@@ -16,7 +16,7 @@ C_STMT_BGN
  * @param maxLimit The maximum number of times the event can be handled
  * @return Pointer to the created limit event handler
  */
-event_handler* event_handler_limit_create(event_handler* proxyHandler, int maxLimit);
+event_handler *event_handler_limit_create(event_handler *proxyHandler, int maxLimit);
 
 C_STMT_END
 
