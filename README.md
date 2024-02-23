@@ -2,7 +2,8 @@
 
 ## Introduction
 
-CBus is a lightweight event bus library for C. It provides a simple mechanism for event handling and propagation within your C applications.
+CBus is a lightweight event bus library for C. It provides a simple mechanism for event handling and propagation within
+your C applications.
 
 ## Usage
 
@@ -31,7 +32,8 @@ int main(int argc, char* argv[]) {
 
 ## Getting Started
 
-To start using CBUS in your project, simply include the necessary headers and link against the library. Don't forget to initialize the event handlers and the event bus before using them.
+To start using CBUS in your project, simply include the necessary headers and link against the library. Don't forget to
+initialize the event handlers and the event bus before using them.
 
 ```cmake
 # Add CBUS library to your CMakeLists.txt
@@ -46,20 +48,27 @@ install(TARGETS cbus DESTINATION lib)
 ```
 
 ### Using Event Handlers
+
 #### 1. Print Handler
+
 The `eventhandler_print` handler is used to print event data to the console.
+
 ```c
 event_handler* print = event_handler_print_create(a_topic);
 ```
 
 #### 2. Limit Handler
+
 The `eventhandler_limit` handler limits the number of times an event can be handled.
+
 ```c
 event_handler* limit_print = event_handler_limit_create(print, 3);
 ```
 
 #### 3. Combine Handler
+
 The `eventhandler_combine` handler combines multiple event handlers into one.
+
 ```c
 event_handler_handle_func handleFuncs[] = {
     event_handler_print_handle,
@@ -70,6 +79,7 @@ event_handler* combine = event_handler_combine_create(b_topic, handleFuncs, nr);
 ```
 
 #### Example
+
 ```c 
 int i = 0;
 

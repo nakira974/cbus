@@ -16,8 +16,7 @@ C_STMT_BGN
  * @param b Pointer to the second value
  * @return Result of the comparison
  */
-inline int int_compare (void* a, void *b)
-{
+inline int int_compare(void *a, void *b) {
     int result;
     __asm__ __volatile__ (
             "sub %1, %0 \n\t"
@@ -37,9 +36,9 @@ inline int int_compare (void* a, void *b)
  * @param that Pointer to the second string
  * @return Result of the comparison
  */
-inline int string_compare(void* thiz, void* that) {
-    const char* thiz_str = (const char*) thiz;
-    const char* that_str = (const char*) that;
+inline int string_compare(void *thiz, void *that) {
+    const char *thiz_str = (const char *) thiz;
+    const char *that_str = (const char *) that;
 
     return strcmp(thiz_str, that_str);
 }

@@ -5,6 +5,7 @@
  */
 #ifndef _EVENT_HANDLER_PRINT_H_
 #define _EVENT_HANDLER_PRINT_H_
+
 #include "eventbus_typedef.h"
 #include "eventhandler.h"
 
@@ -15,7 +16,7 @@ C_STMT_BGN
  * @param topic The topic for which the print handler is created
  * @return Pointer to the created print event handler
  */
-event_handler* event_handler_print_create(topic_t topic);
+event_handler *event_handler_print_create(topic_t topic);
 
 C_STMT_END
 

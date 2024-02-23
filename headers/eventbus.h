@@ -23,7 +23,7 @@ struct _eventbus {
      * @param data The event data
      * @return 0 on success, -1 on failure
      */
-    int (*post)(eventbus* thiz, topic_t topic, void* data);
+    int (*post)(eventbus *thiz, topic_t topic, void *data);
 
     /**
      * Subscribes a handler to the event bus.
@@ -32,7 +32,7 @@ struct _eventbus {
      * @param context Additional context for the handler
      * @return 0 on success, -1 on failure
      */
-    int (*subscribe)(eventbus* thiz, event_handler* handler, void* context);
+    int (*subscribe)(eventbus *thiz, event_handler *handler, void *context);
 
     /**
      * Unsubscribes a handler from the event bus.
@@ -41,13 +41,13 @@ struct _eventbus {
      * @param context Additional context for the handler
      * @return 0 on success, -1 on failure
      */
-    int (*unsubscribe)(eventbus* thiz, event_handler* handler, void* context);
+    int (*unsubscribe)(eventbus *thiz, event_handler *handler, void *context);
 
     /**
      * Destroys the event bus instance.
      * @param thiz The event bus instance to destroy
      */
-    void (*destroy)(eventbus* thiz);
+    void (*destroy)(eventbus *thiz);
 
     /**
      * Extension field for future use.
@@ -59,13 +59,13 @@ struct _eventbus {
  * Creates a new event bus instance.
  * @return A pointer to the created event bus
  */
-eventbus* eventbus_create(void);
+eventbus *eventbus_create(void);
 
 /**
  * Destroys an event bus instance.
  * @param thiz The event bus instance to destroy
  */
-void eventbus_destroy(eventbus* thiz);
+void eventbus_destroy(eventbus *thiz);
 
 /**
  * Posts an event to the event bus.
@@ -74,7 +74,7 @@ void eventbus_destroy(eventbus* thiz);
  * @param data The event data
  * @return 0 on success, -1 on failure
  */
-int eventbus_post(eventbus* thiz, topic_t topic, void* data);
+int eventbus_post(eventbus *thiz, topic_t topic, void *data);
 
 /**
  * Subscribes a handler to the event bus.
@@ -83,7 +83,7 @@ int eventbus_post(eventbus* thiz, topic_t topic, void* data);
  * @param context Additional context for the handler
  * @return 0 on success, -1 on failure
  */
-int eventbus_subscribe(eventbus* thiz, event_handler* handler, void* context);
+int eventbus_subscribe(eventbus *thiz, event_handler *handler, void *context);
 
 /**
  * Unsubscribes a handler from the event bus.
@@ -92,7 +92,7 @@ int eventbus_subscribe(eventbus* thiz, event_handler* handler, void* context);
  * @param context Additional context for the handler
  * @return 0 on success, -1 on failure
  */
-int eventbus_unsubscribe(eventbus* thiz, event_handler* handler, void* context);
+int eventbus_unsubscribe(eventbus *thiz, event_handler *handler, void *context);
 
 C_STMT_END
 
