@@ -2,7 +2,7 @@
 
 ## Introduction
 
-CBus is a lightweight event bus library for C. It provides a simple mechanism for event handling and propagation within
+CBUS is a lightweight event bus library for C. It provides a simple mechanism for event handling and propagation within
 your C applications.
 
 ## Usage
